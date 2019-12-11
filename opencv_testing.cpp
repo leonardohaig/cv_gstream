@@ -61,6 +61,7 @@ static void need_data (GstElement * appsrc, guint unused, MyContext * ctx)
     GstFlowReturn ret;
     Mat frame;
 
+    static int i=0;
     /* read frame */
     cap.read(frame);
 
@@ -70,6 +71,7 @@ static void need_data (GstElement * appsrc, guint unused, MyContext * ctx)
     }
     //cv::imshow("frame",frame);
     cv::cvtColor(frame,frame,cv::COLOR_BGR2YUV_I420);
+    std::cout<<"Frame:"<<i++<<std::endl;
 
     /* image processing */
     //detectAndDisplay( frame );
