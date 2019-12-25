@@ -14,7 +14,7 @@ void sender()
     // the VideoWriter class expects a 3 channel image since we are sending colored images.
     // Both 'YUY2' and 'I420' are single channel images.
     //VideoCapture cap("v4l2src ! video/x-raw,format=BGR,width=640,height=480,framerate=30/1 ! appsink",CAP_GSTREAMER);
-    VideoCapture cap("/home/liheng/Video-6mm-20190521-071528-640X360.avi");
+    VideoCapture cap("/home/liheng/ADAS_Video/1119/ADAS_Video-20191119-171526.mp4");
     if(!cap.isOpened())
     {
         cout<<"VideoCapture not opened"<<endl;
@@ -24,12 +24,12 @@ void sender()
     // VideoWriter: 'videoconvert' converts the 'BGR' images into 'YUY2' raw frames to be fed to
     // 'jpegenc' encoder since 'jpegenc' does not accept 'BGR' images. The 'videoconvert' is not
     // in the original pipeline, because in there we are reading frames in 'YUY2' format from 'v4l2src'
-    //cv::String str("appsrc ! videoconvert ! video/x-raw,format=YUY2,width=640,height=360,framerate=30/1 ! jpegenc ! rtpjpegpay ! udpsink host=127.0.0.1 port=5000");
-    cv::String str("appsrc ! videoconvert ! video/x-raw,format=YUY2,width=640,height=360,"
-                   "framerate=30/1 ! jpegenc ! rtpjpegpay ! udpsink "
-                   "host=192.168.0.18 port=5000");
+    cv::String str("appsrc ! videoconvert ! video/x-raw,format=YUY2,width=1280,height=720,framerate=30/1 ! jpegenc ! rtpjpegpay ! udpsink host=127.0.0.1 port=5000");
+//    cv::String str("appsrc ! videoconvert ! video/x-raw,format=YUY2,width=640,height=360,"
+//                   "framerate=30/1 ! jpegenc ! rtpjpegpay ! udpsink "
+//                   "host=192.168.0.68 port=5000");
     VideoWriter out(str,
-            CAP_GSTREAMER,0,30.0,Size(640,360),true);
+            CAP_GSTREAMER,0,30.0,Size(1280,720),true);
 
     if(!out.isOpened())
     {
